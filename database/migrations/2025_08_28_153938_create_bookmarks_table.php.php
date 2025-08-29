@@ -12,13 +12,10 @@ return new class extends Migration
     public function up(): void
     {
          Schema::create('bookmarks', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->string('comic_api_id');
-            $table->datetime('created_at');
-            $table->datetime('updated_at');
-
-        
+             $table->id();
+             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+             $table->string('comic_api_id');
+             $table->timestamps();        
         });
     }
 
