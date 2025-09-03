@@ -14,6 +14,10 @@ return [
     |
     */
 
+    'remote_manga' => [
+        'base_url' => env('REMOTE_API_BASE', 'https://example.com'),
+    ],
+
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],

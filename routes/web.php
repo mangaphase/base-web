@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\MangaController;
+
+Route::get('/manga', [MangaController::class, 'index'])->name('manga.index');
+Route::get('/manga/{id}', [MangaController::class, 'show'])->name('manga.show');
+Route::get('/manga/chapter/{chapterId}', [MangaController::class, 'chapter'])->name('manga.chapter');
 
 Route::get('/', function () {
     return Inertia::render('Welcome');
