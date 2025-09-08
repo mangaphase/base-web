@@ -9,7 +9,9 @@ class Bookmark extends Model
     use HasFactory;
     protected $fillable = [
         'user_id',
-        'comic_api_id',
+        'comic_api_slug',
+        'comic_api_title',
+        'comic_api_thumbnail',
     ];
     public function user()
     {
