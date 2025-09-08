@@ -59,8 +59,12 @@ public function genre($slug, $page = 1)
     public function detail($slug)
     {
         $komik = $this->manga->getDetailKomik($slug);
+        $isBookmarked = \App\Models\Bookmark::where('user_id', auth()->id())
+            ->where('comic_api_slug', $slug)
+            ->exists();
         return Inertia::render('Manga/Detail', [
             'komik' => $komik
+            , 'isBookmarked' => $isBookmarked
         ]);
     }
 

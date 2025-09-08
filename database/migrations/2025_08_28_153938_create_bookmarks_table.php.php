@@ -14,7 +14,9 @@ return new class extends Migration
          Schema::create('bookmarks', function (Blueprint $table) {
              $table->id();
              $table->foreignId('user_id')->constrained()->onDelete('cascade');
+             $table->string('comic_api_slug');
              $table->string('comic_api_title');
+             $table->string('comic_api_thumbnail');
              $table->timestamps();        
         });
     }
