@@ -33,7 +33,7 @@ function bookmarkKomik() {
         <button @click="bookmarkKomik" :disabled="isBookmarked" style="margin-bottom: 16px"></button>
         <p>{{ komik.sinopsis }}</p>
         {{ isBookmarked ? 'Bookmarked' : 'Bookmark Komik' }}
-        <p>Status: {{ komik.info['Status'] }}</p>
+        <!-- <p>Status: {{ komik.info['Status'] }}</p> -->
         <p>Genre: {{ komik.genres }}</p>
         <h2>Chapters</h2>
         <ul>
