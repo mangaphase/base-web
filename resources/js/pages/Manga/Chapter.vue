@@ -1,6 +1,37 @@
 <script setup>
-defineProps({
+import { usePage } from '@inertiajs/vue3';
+import { onMounted } from 'vue';
+
+const props = defineProps({
     chapter: Object,
+});
+
+const chapter = props.chapter;
+
+const user = usePage().props.auth?.user;
+
+onMounted(() => {
+    if (!user) return;
+
+    // Pastikan chapter.mangaInfo dan chapter.meta ada
+    if (!chapter.mangaInfo || !chapter.meta) return;
+
+    const csrfMeta = document.querySelector('meta[name="csrf-token"]');
+    const csrfToken = csrfMeta ? csrfMeta.getAttribute('content') : '';
+
+    fetch('/reading-history', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': csrfToken,
+        },
+        body: JSON.stringify({
+            comic_api_title: chapter.mangaInfo.title,
+            comic_api_slug: chapter.mangaInfo.slug,
+            chapter_api_slug: chapter.meta.chapterNumber,
+            last_page_number: 1,
+        }),
+    });
 });
 </script>
 

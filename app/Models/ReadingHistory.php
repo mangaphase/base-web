@@ -8,10 +8,13 @@ class ReadingHistory extends Model
 {
     use HasFactory;
 
+    protected $table = 'reading_history';
+
     protected $fillable = [
         'user_id',
-        'comic_api_id',
-        'chapter_api_id',
+        'comic_api_slug',
+        'comic_api_title',
+        'chapter_api_slug',
         'last_page_number',
         'last_read_at',
     ];
