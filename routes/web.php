@@ -4,6 +4,7 @@ use App\Http\Controllers\BookmarkController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\MangaController;
+use App\Http\Controllers\ReadingHistoryController;
 
 // Route::get('/manga', [MangaController::class, 'index'])->name('manga.index');
 Route::get('/manga/{slug}', [MangaController::class, 'detail'])->name('manga.detail');
@@ -17,8 +18,10 @@ Route::get('/bookmark', [BookmarkController::class, 'index'])->middleware(['auth
 Route::post('/bookmark', [BookmarkController::class, 'store'])->middleware(['auth', 'verified'])->name('bookmark.store');
 Route::delete('/bookmark/{id}', [BookmarkController::class, 'destroy'])->middleware(['auth', 'verified'])->name('bookmark.destroy');
 Route::get('/', [MangaController::class, 'index'])->name('home');
-
-
+Route::get('/reading-history', [ReadingHistoryController::class, 'index'])
+    ->middleware(['auth', 'verified'])->name('reading-history.index');
+Route::post('/reading-history', [ReadingHistoryController::class, 'store'])
+    ->middleware(['auth', 'verified'])->name('reading-history.store');
 // Route::get('/', function () {
 //     return Inertia::render('Welcome');
 // })->name('home');
