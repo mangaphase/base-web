@@ -47,4 +47,11 @@ public function getGenreDetail($slug, $page = 1)
     {
         return Http::get("{$this->baseUrl}/baca-chapter/{$slug}/{$chapter}")->json();
     }
+    public function searchManga($query, $page = 1)
+    {
+        return Http::get("{$this->baseUrl}/search", [
+            'q' => $query,
+            'page' => $page
+        ])->json();
+    }
 }

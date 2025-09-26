@@ -13,6 +13,7 @@ Route::get('/genre/{slug}', [MangaController::class, 'genre'])->name('manga.genr
 //pagination genre
 Route::get('/genre/{slug}/page/{page}', [MangaController::class, 'genre'])->name('genre.page');
 Route::get('/pustaka/{page?}', [MangaController::class, 'pustaka'])->name('manga.pustaka');
+Route::get('/search', [MangaController::class, 'search'])->name('manga.search');
 
 Route::get('/bookmark', [BookmarkController::class, 'index'])->middleware(['auth', 'verified'])->name('bookmark.index');
 Route::post('/bookmark', [BookmarkController::class, 'store'])->middleware(['auth', 'verified'])->name('bookmark.store');
