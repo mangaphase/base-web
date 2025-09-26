@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\MangaService;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
 
 class MangaController extends Controller
 {
@@ -73,6 +74,19 @@ public function genre($slug, $page = 1)
         $chapterData = $this->manga->getChapter($slug, $chapter);
         return Inertia::render('Manga/Chapter', [
             'chapter' => $chapterData
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('q');
+        $page = $request->input('page', 1);
+
+        $result = $this->manga->searchManga($query, $page);
+
+        return Inertia::render('Manga/Search', [
+            'query' => $query,
+            'result' => $result,
         ]);
     }
 }
