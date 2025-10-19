@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import AppHeader from '@/components/AppHeader.vue';
 import { usePage } from '@inertiajs/vue3';
 
 const histories = usePage().props.histories;
 </script>
 
 <template>
+    <AppHeader />
     <div>
         <h2>Riwayat Baca</h2>
         <ul>

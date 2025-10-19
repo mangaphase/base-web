@@ -1,4 +1,5 @@
 <script setup>
+import AppHeader from '@/components/AppHeader.vue';
 defineProps({
     title: String,
     items: Array,
@@ -11,6 +12,7 @@ defineProps({
 </script>
 
 <template>
+    <AppHeader />
     <div>
         <h1>{{ title }}</h1>
         <!-- <p>Total Manga: {{ totalManga }}</p> -->

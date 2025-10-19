@@ -15,6 +15,7 @@ function submitSearch() {
 </script>
 
 <template>
+    <AppHeader />
     <div>
         <form @submit.prevent="submitSearch" style="margin-bottom: 16px">
             <input v-model="searchQuery" type="text" placeholder="Cari manga..." style="padding: 8px; width: 250px" />

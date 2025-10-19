@@ -16,8 +16,8 @@ Route::get('/pustaka/{page?}', [MangaController::class, 'pustaka'])->name('manga
 Route::get('/search', [MangaController::class, 'search'])->name('manga.search');
 
 Route::get('/bookmark', [BookmarkController::class, 'index'])->middleware(['auth', 'verified'])->name('bookmark.index');
-Route::post('/bookmark', [BookmarkController::class, 'store'])->middleware(['auth', 'verified'])->name('bookmark.store');
-Route::delete('/bookmark/{id}', [BookmarkController::class, 'destroy'])->middleware(['auth', 'verified'])->name('bookmark.destroy');
+Route::post('/bookmark', [BookmarkController::class, 'store'])->name('bookmark.store');
+Route::delete('/bookmark/{comic_api_slug}', [BookmarkController::class, 'destroy'])->name('bookmark.destroy');
 Route::get('/', [MangaController::class, 'index'])->name('home');
 Route::get('/reading-history', [ReadingHistoryController::class, 'index'])
     ->middleware(['auth', 'verified'])->name('reading-history.index');
@@ -26,7 +26,7 @@ Route::post('/reading-history', [ReadingHistoryController::class, 'store'])
 // Route::get('/', function () {
 //     return Inertia::render('Welcome');
 // })->name('home');
- 
+
 Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
