@@ -45,7 +45,7 @@ onMounted(() => {
         </div>
         <div v-if="chapter.images && chapter.images.length">
             <div v-for="img in chapter.images" :key="img.id">
-                <img :src="img.src" :alt="img.alt" style="max-width: 100%; margin-bottom: 16px" />
+                <img :src="img.src" :alt="img.alt" style="max-width: 100%" />
             </div>
         </div>
         <div v-else>

@@ -39,10 +39,23 @@ class BookmarkController extends Controller
         return back();
     }
 
-    public function destroy($id)
+    public function destroy($comic_api_slug)
     {
-        $bookmark = Bookmark::where('user_id', Auth::id())->findOrFail($id);
-        $bookmark->delete();
-        return back();
+        $bookmark = Bookmark::where('comic_api_slug', $comic_api_slug)
+                        ->where('user_id', auth()->id())
+                        ->first();
+
+        if ($bookmark) {
+            $bookmark->delete();
+            if (request()->wantsJson()) {
+                return response()->json(['message' => 'Bookmark removed successfully']);
+            }
+            return redirect()->back()->with('message', 'Bookmark removed successfully');
+        }
+
+        if (request()->wantsJson()) {
+            return response()->json(['message' => 'Bookmark not found'], 404);
+        }
+        return redirect()->back()->with('error', 'Bookmark not found');
     }
 }

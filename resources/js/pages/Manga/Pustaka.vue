@@ -1,10 +1,12 @@
 <script setup>
+import AppHeader from '@/components/AppHeader.vue';
 defineProps({
     pustaka: Object,
 });
 </script>
 
 <template>
+    <AppHeader />
     <div>
         <h1>Pustaka Manga</h1>
         <ul>
