@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import InputError from '@/components/InputError.vue';
+import SocialButton from '@/components/SocialButton.vue';
 import TextLink from '@/components/TextLink.vue';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -12,6 +13,20 @@ import { LoaderCircle } from 'lucide-vue-next';
 <template>
     <AuthBase title="Create an account" description="Enter your details below to create your account">
         <Head title="Register" />
+
+        <!-- Google OAuth Section -->
+        <div class="space-y-4">
+            <SocialButton text="Sign up with Google" />
+
+            <div class="relative">
+                <div class="absolute inset-0 flex items-center">
+                    <span class="w-full border-t" />
+                </div>
+                <div class="relative flex justify-center text-xs uppercase">
+                    <span class="bg-background px-2 text-muted-foreground">Or continue with</span>
+                </div>
+            </div>
+        </div>
 
         <Form
             method="post"
@@ -53,13 +68,13 @@ import { LoaderCircle } from 'lucide-vue-next';
                     <InputError :message="errors.password_confirmation" />
                 </div>
 
-                <Button type="submit" class="w-full mt-2" tabindex="5" :disabled="processing">
-                    <LoaderCircle v-if="processing" class="w-4 h-4 animate-spin" />
+                <Button type="submit" class="mt-2 w-full" tabindex="5" :disabled="processing">
+                    <LoaderCircle v-if="processing" class="h-4 w-4 animate-spin" />
                     Create account
                 </Button>
             </div>
 
-            <div class="text-sm text-center text-muted-foreground">
+            <div class="text-center text-sm text-muted-foreground">
                 Already have an account?
                 <TextLink :href="route('login')" class="underline underline-offset-4" :tabindex="6">Log in</TextLink>
             </div>
