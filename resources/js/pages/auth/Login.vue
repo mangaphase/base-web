@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import InputError from '@/components/InputError.vue';
+import SocialButton from '@/components/SocialButton.vue';
 import TextLink from '@/components/TextLink.vue';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -19,8 +20,22 @@ defineProps<{
     <AuthBase title="Log in to your account" description="Enter your email and password below to log in">
         <Head title="Log in" />
 
-        <div v-if="status" class="mb-4 text-sm font-medium text-center text-green-600">
+        <div v-if="status" class="mb-4 text-center text-sm font-medium text-green-600">
             {{ status }}
+        </div>
+
+        <!-- Google OAuth Section -->
+        <div class="space-y-4">
+            <SocialButton text="Continue with Google" />
+
+            <div class="relative">
+                <div class="absolute inset-0 flex items-center">
+                    <span class="w-full border-t" />
+                </div>
+                <div class="relative flex justify-center text-xs uppercase">
+                    <span class="bg-background px-2 text-muted-foreground">Or continue with</span>
+                </div>
+            </div>
         </div>
 
         <Form method="post" :action="route('login')" :reset-on-success="['password']" v-slot="{ errors, processing }" class="flex flex-col gap-6">
@@ -66,13 +81,13 @@ defineProps<{
                     </Label>
                 </div>
 
-                <Button type="submit" class="w-full mt-4" :tabindex="4" :disabled="processing">
-                    <LoaderCircle v-if="processing" class="w-4 h-4 animate-spin" />
+                <Button type="submit" class="mt-4 w-full" :tabindex="4" :disabled="processing">
+                    <LoaderCircle v-if="processing" class="h-4 w-4 animate-spin" />
                     Log in
                 </Button>
             </div>
 
-            <div class="text-sm text-center text-muted-foreground">
+            <div class="text-center text-sm text-muted-foreground">
                 Don't have an account?
                 <TextLink :href="route('register')" :tabindex="5">Sign up</TextLink>
             </div>
